@@ -24,5 +24,4 @@ let carritoSchema = new Schema({
 
 });
 
-
 module.exports = mongoose.model('Carrito', carritoSchema);

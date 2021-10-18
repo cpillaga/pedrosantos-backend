@@ -79,7 +79,7 @@ app.post("/usuarios", (req, res) => {
             nombre: body.nombre,
             correo: body.correo,
             tipo: body.tipo,
-            password: bcrypt.hashSync(password, 10)
+            password: bcrypt.hashSync(body.password, 10)
         });
     }
 

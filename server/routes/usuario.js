@@ -24,6 +24,8 @@ app.get("/usuarios", (req, res) => {
                 err,
             });
         }
+
+        usuarios.password = "null";
         res.json({
             ok: true,
             usuarios,

@@ -178,10 +178,10 @@ app.delete("/carritos/:id", (req, res) => {
         });
     });
 });
+
 //========================================
 //borrar todos los carritos de un usuario
 //========================================
-
 app.delete("/carritos-usuario/:id", (req, res) => {
     let id = req.params.id;
 
@@ -208,10 +208,10 @@ app.delete("/carritos-usuario/:id", (req, res) => {
         });
     });
 });
+
 //=====================================
 //borrar carrito x producto
 //=====================================
-
 app.delete("/carritos/buscar/:id", (req, res) => {
     let id = req.params.id;
     Carrito.findOneAndRemove({

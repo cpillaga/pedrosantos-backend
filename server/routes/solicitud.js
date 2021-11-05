@@ -29,6 +29,33 @@ app.get("/solicitud", (req, res) => {
         });
 });
 
+
+app.get("/solicitud/usuario/:idUsu", (req, res) => {
+    let idUsu = req.params.idUsu;
+    Solicitud.findById({usuario: idUsu})
+        .populate('usuario')
+        .exec((err, solicitudDB) => {
+            if (err) {
+                return res.status(500).json({
+                    ok: false,
+                    err,
+                });
+            }
+            if (!solicitudDB) {
+                return res.status(400).json({
+                    ok: false,
+                    err: {
+                        mensaje: "el usuario no existe",
+                    },
+                });
+            }
+            res.json({
+                ok: true,
+                solicitud: solicitudDB,
+            });
+        });
+});
+
 //=====================================
 //obtener un pedido por id
 //=====================================

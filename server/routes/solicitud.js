@@ -32,7 +32,7 @@ app.get("/solicitud", (req, res) => {
 
 app.get("/solicitud/usuario/:idUsu", (req, res) => {
     let idUsu = req.params.idUsu;
-    Solicitud.findById({usuario: idUsu})
+    Solicitud.find({usuario: idUsu})
         .populate('usuario')
         .exec((err, solicitudDB) => {
             if (err) {

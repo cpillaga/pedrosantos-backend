@@ -10,7 +10,7 @@ const { verificaToken } = require('../middlewares/autenticacion');
 //mostrar todas las categorias de una empresa
 //=====================================
 
-app.get('/direccion/:usuario', verificaToken, (req, res) => {
+app.get('/direccion/:usuario', (req, res) => {
 
     let usuarioB = req.params.usuario;
 
@@ -34,7 +34,7 @@ app.get('/direccion/:usuario', verificaToken, (req, res) => {
 //mostrar una direccion por id.
 //=====================================
 
-app.get('/direccionId/:id', verificaToken, (req, res) => {
+app.get('/direccionId/:id', (req, res) => {
     let id = req.params.id;
     Direccion.findById(id, (err, direccionDB) => {
         if (err) {
@@ -88,7 +88,7 @@ app.get('/direccionId/:id', verificaToken, (req, res) => {
 // });
 
 
-app.post('/direccion', verificaToken, (req, res) => {
+app.post('/direccion', (req, res) => {
     let body = req.body;
     let direccion = new Direccion({
         principal: body.principal,
@@ -124,7 +124,7 @@ app.post('/direccion', verificaToken, (req, res) => {
 //=====================================
 //Modifica direccion por ID
 //=====================================
-app.put('/direccion/:id', verificaToken, function(req, res) {
+app.put('/direccion/:id', function(req, res) {
     let id = req.params.id;
 
     let body = _.pick(req.body, ['principal', 'secundaria', 'referencia', 'lat', 'lng', 'usuario']);
@@ -148,7 +148,7 @@ app.put('/direccion/:id', verificaToken, function(req, res) {
 //eliminar nueva direccion
 //=====================================
 
-app.delete('/direccion/:id', verificaToken, (req, res) => {
+app.delete('/direccion/:id', (req, res) => {
     let id = req.params.id;
 
     Direccion.findByIdAndRemove(id, (err, direccionBD) => {

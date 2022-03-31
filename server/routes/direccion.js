@@ -43,9 +43,9 @@ app.post('/direccion', (req, res) => {
 //=====================================
 //Lista direccion por usuario
 // //=====================================
-app.get('/direccion/:id', (req, res) => {
-    let id = req.params.id;
-    Direccion.findById(id, (err, direccionBD) => {
+app.get('/direccion/:usuario', (req, res) => {
+    let usuarioB = req.params.usuario;
+    Direccion.find({usuario: usuarioB}, (err, direccionBD) => {
         if (err) {
             return res.status(500).json({
                 ok: false,

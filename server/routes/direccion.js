@@ -61,7 +61,32 @@ app.get('/direccionId/:id', verificaToken, (req, res) => {
 
 //=====================================
 //crear nueva direccion
-//=====================================
+// //=====================================
+// app.post("/carritos", (req, res) => {
+//     let body = req.body;
+//     let direccion = new Direccion({
+//         principal: body.principal,
+//         secundaria: body.secundaria,
+//         referencia: body.referencia,
+//         lat: body.lat,
+//         lng: body.lng,
+//         usuario: body.usuario
+//     });
+
+//     direccion.save((err, direccionBD) => {
+//         if (err) {
+//             return res.status(500).json({
+//                 ok: false,
+//                 err
+//             });
+//         }        
+//         res.status(201).json({
+//             ok: true,
+//             direccion: direccionBD
+//         });
+//     });
+// });
+
 
 app.post('/direccion', verificaToken, (req, res) => {
     let body = req.body;

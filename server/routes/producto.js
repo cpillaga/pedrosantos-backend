@@ -1,6 +1,8 @@
 const express = require("express");
 
 var ObjectId = require('mongodb').ObjectID;
+const fcm = require('../utils/fcm-managment');
+
 const cors = require('cors');
 let app = express();
 app.use(cors({ origin: '*' }));
@@ -119,6 +121,14 @@ app.get("/productos/:id", (req, res) => {
                 producto: productoDB,
             });
         });
+});
+
+
+app.post("/productos-promotions/:topic", (req, res) => {
+    let topic = req.params.topic;
+    let body = req.body;
+
+    fcm.userBroadcastNotification(body.title, body, {}, topic);
 });
 
 //=====================================

@@ -129,6 +129,11 @@ app.post("/productos-promotions/:topic", (req, res) => {
     let body = req.body;
 
     fcm.userBroadcastNotification(body.title, body, {}, topic);
+
+    res.status(201).json({
+        ok: true,
+        message: 'Mensaje enviado',
+    });
 });
 
 //=====================================

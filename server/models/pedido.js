@@ -29,7 +29,7 @@ let pedidoSchema = new Schema({
   },
   lat:{
     type:Number,
-  }
+  },
   lng:{
     type:Number,
   },

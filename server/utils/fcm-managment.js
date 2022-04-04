@@ -27,6 +27,8 @@ exports.userNotification = function(tokensList, title, body, data) {
 // Broadcast Messages
 // user
 exports.userBroadcastNotification = function(title, body, data, topico) {
+    console.log("Title: " + title);
+    console.log(body);
     var payload = {
         notification: {
             title,

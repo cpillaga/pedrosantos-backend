@@ -129,7 +129,9 @@ app.put("/productos-promotions/:topic", (req, res) => {
     let topic = req.params.topic;
     let body = req.body;
 
-    fcm.userBroadcastNotification(body.title, body, {}, topic);
+    let mensaje = "El producto ( " + body.product + " ) está en promoción";
+
+    fcm.userBroadcastNotification(body.title, mensaje, {}, topic);
 
     res.status(201).json({
         ok: true,

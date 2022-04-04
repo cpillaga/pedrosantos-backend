@@ -39,6 +39,13 @@ app.post("/login", (req, res) => {
         }
 
         usuarioDB.password = null;
+        console.log(usuarioDB.fcm);
+        console.log("Primer clg");
+        console.log(usuarioDB.fcm[usuarioDB.fcm.length]);
+        console.log("-------");
+        console.log("Segundo clg");
+        console.log(usuarioDB.fcm[usuarioDB.fcm.length - 1]);
+        console.log("----------");
         fcm.userSubscribetoTopic(usuarioDB.fcm[usuarioDB.fcm.length], 'promotions');
         res.status(201).json({
             ok: true,

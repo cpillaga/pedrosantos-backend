@@ -1,9 +1,9 @@
 const express = require("express");
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const cors = require('cors');
+const cors = require("cors");
 let app = express();
-app.use(cors({ origin: '*' }));
+app.use(cors({ origin: "*" }));
 
 let Pedido = require("../models/pedido");
 
@@ -12,23 +12,23 @@ let Pedido = require("../models/pedido");
 //=======================================
 
 app.get("/pedidos-usuario/:id", (req, res) => {
-    let id = req.params.id;
-    Pedido.find({
-            usuario: id
-        })
-        .populate('usuario')
-        .exec((err, pedidos) => {
-            if (err) {
-                return res.status(500).json({
-                    ok: false,
-                    err,
-                });
-            }
-            res.json({
-                ok: true,
-                pedidos,
-            });
+  let id = req.params.id;
+  Pedido.find({
+    usuario: id,
+  })
+    .populate("usuario")
+    .exec((err, pedidos) => {
+      if (err) {
+        return res.status(500).json({
+          ok: false,
+          err,
         });
+      }
+      res.json({
+        ok: true,
+        pedidos,
+      });
+    });
 });
 
 //=====================================
@@ -36,29 +36,29 @@ app.get("/pedidos-usuario/:id", (req, res) => {
 //=====================================
 
 app.get("/pedidos/:id", (req, res) => {
-    let id = req.params.id;
-    Pedido.findById(id)
-        .populate('usuario')
-        .exec((err, pedidoDB) => {
-            if (err) {
-                return res.status(500).json({
-                    ok: false,
-                    err,
-                });
-            }
-            if (!pedidoDB) {
-                return res.status(400).json({
-                    ok: false,
-                    err: {
-                        mensaje: "el id no existe",
-                    },
-                });
-            }
-            res.json({
-                ok: true,
-                pedido: pedidoDB,
-            });
+  let id = req.params.id;
+  Pedido.findById(id)
+    .populate("usuario")
+    .exec((err, pedidoDB) => {
+      if (err) {
+        return res.status(500).json({
+          ok: false,
+          err,
         });
+      }
+      if (!pedidoDB) {
+        return res.status(400).json({
+          ok: false,
+          err: {
+            mensaje: "el id no existe",
+          },
+        });
+      }
+      res.json({
+        ok: true,
+        pedido: pedidoDB,
+      });
+    });
 });
 
 //=====================================
@@ -66,27 +66,32 @@ app.get("/pedidos/:id", (req, res) => {
 //=====================================
 
 app.post("/pedidos", (req, res) => {
-    let body = req.body;
-    let pedido = new Pedido({
-        fecha: Date.now(),
-        subtotal: body.subtotal,
-        iva: body.iva,
-        total: body.total,
-        usuario: body.usuario,
-    });
+  let body = req.body;
+  let pedido = new Pedido({
+    fecha: Date.now(),
+    subtotal: body.subtotal,
+    iva: body.iva,
+    total: body.total,
+    usuario: body.usuario,
+    delivery: body.delivery,
+    priceDelivery: body.priceDelivery,
+    lat: body.lat,
+    lng: body.lng,
+  });
 
-    pedido.save((err, pedidoBD) => {
-        if (err) {
-            return res.status(500).json({
-                ok: false,
-                err,
-            });
-        }
-        res.status(201).json({
-            ok: true,
-            pedido: pedidoBD,
-        });
+  pedido.save((err, pedidoBD) => {
+    if (err) {
+      return res.status(500).json({
+        ok: false,
+        err,
+      });
+    }
+    res.status(201).json({
+      ok: true,
+      pedido: pedidoBD,
     });
+  });
 });
 
 module.exports = app;
+

@@ -6,6 +6,9 @@ const cors = require('cors');
 let Usuario = require("../models/usuario");
 
 let app = express();
+
+const fcm = require('../utils/fcm-managment');
+
 app.use(cors({ origin: '*' }));
 
 app.post("/login", (req, res) => {
@@ -36,7 +39,7 @@ app.post("/login", (req, res) => {
         }
 
         usuarioDB.password = null;
-
+        fcm.userSubscribetoTopic(usuarioDB.fcm[usuarioDB.fcm.length], 'promotions');
         res.status(201).json({
             ok: true,
             usuario: usuarioDB,

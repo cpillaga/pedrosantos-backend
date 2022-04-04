@@ -36,3 +36,7 @@ exports.userBroadcastNotification = function(title, body, data, topico) {
     };
     return _userFCM.messaging().sendToTopic(`/topics/${topico}`, payload);
 };
+
+exports.userSubscribetoTopic = function(token, topico) {
+    return _userFCM.messaging().subscribeToTopic(token, topico);
+};

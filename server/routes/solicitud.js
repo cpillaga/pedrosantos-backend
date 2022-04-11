@@ -98,6 +98,9 @@ app.post("/solicitud", (req, res) => {
         iva: body.iva,
         total: body.total,
         usuario: body.usuario,
+        delivery: body.delivery,
+        priceDelivery: body.priceDelivery,
+        direccion: body.direccion,
     });
 
     solicitud.save((err, solicitudBD) => {

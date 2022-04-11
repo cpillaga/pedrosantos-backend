@@ -30,8 +30,19 @@ let solicitudSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Usuario',
         required: true
+    },
+    delivery: {
+        type: Boolean,
+        default: false,
+    },
+    priceDelivery: {
+        type: Number,
+    },
+    direccion: {
+        type: Schema.Types.ObjectId,
+        ref: 'Direccion',
+        required: true
     }
-
 });
 
 module.exports = mongoose.model('Solicitud', solicitudSchema);

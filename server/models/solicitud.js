@@ -37,6 +37,7 @@ let solicitudSchema = new Schema({
     },
     priceDelivery: {
         type: Number,
+        
     },
     direccion: {
         type: Schema.Types.ObjectId,

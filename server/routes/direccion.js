@@ -69,7 +69,7 @@ app.get('/direccion/:usuario', (req, res) => {
 //=====================================
 //Lista direccion por id
 // //==================================
-app.get('/direccion/:id', (req, res) => {
+app.get('/direcciones/:id', (req, res) => {
     let id = req.params.id;
     Direccion.findById(id, (err, direccionBD) => {
         if (err) {

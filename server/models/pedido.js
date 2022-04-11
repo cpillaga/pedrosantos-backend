@@ -27,12 +27,18 @@ let pedidoSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  lat:{
-    type:Number,
+  direccion: {
+    type: Schema.Types.ObjectId,
+    ref: "Direccion",
+    required: true,
+
   },
-  lng:{
-    type:Number,
-  },
+  // lat:{
+  //   type:Number,
+  // },
+  // lng:{
+  //   type:Number,
+  // },
   priceDelivery:{
     type:Number,
   }

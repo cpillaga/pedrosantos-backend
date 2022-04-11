@@ -17,6 +17,7 @@ app.get("/pedidos-usuario/:id", (req, res) => {
     usuario: id,
   })
     .populate("usuario")
+    .populate("direccion")
     .exec((err, pedidos) => {
       if (err) {
         return res.status(500).json({
@@ -39,6 +40,7 @@ app.get("/pedidos/:id", (req, res) => {
   let id = req.params.id;
   Pedido.findById(id)
     .populate("usuario")
+    .populate("direccion")
     .exec((err, pedidoDB) => {
       if (err) {
         return res.status(500).json({
@@ -75,8 +77,7 @@ app.post("/pedidos", (req, res) => {
     usuario: body.usuario,
     delivery: body.delivery,
     priceDelivery: body.priceDelivery,
-    lat: body.lat,
-    lng: body.lng,
+    direccion: body.direccion,
   });
 
   pedido.save((err, pedidoBD) => {

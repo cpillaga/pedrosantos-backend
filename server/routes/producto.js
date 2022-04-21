@@ -125,11 +125,10 @@ app.get("/productos/:id", (req, res) => {
 
 
 app.put("/productos-promotions/:topic", (req, res) => {
-    console.log("llegoooooooooooooooooo");
     let topic = req.params.topic;
     let body = req.body;
 
-    let mensaje = "El producto ( " + body.product + " ) está en promoción";
+    let mensaje = body.mensaje;
 
     fcm.userBroadcastNotification(body.title, mensaje, {}, topic);
 
@@ -138,6 +137,7 @@ app.put("/productos-promotions/:topic", (req, res) => {
         message: 'Mensaje enviado',
     });
 });
+//provinces, cantons
 
 //=====================================
 //crear un nuevo producto

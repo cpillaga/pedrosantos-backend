@@ -39,8 +39,6 @@ app.post("/login", (req, res) => {
         }
 
         usuarioDB.password = null;
-        console.log(usuarioDB.fcm);
-        console.log("----------");
         if (usuarioDB.tipo != "ADMIN") {
             fcm.userSubscribetoTopic(usuarioDB.fcm[usuarioDB.fcm.length - 1], 'promotions');
         }

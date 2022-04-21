@@ -32,8 +32,9 @@ app.get("/solicitud", (req, res) => {
 
 app.get("/solicitud/usuario/:idUsu", (req, res) => {
     let idUsu = req.params.idUsu;
-    Solicitud.find({usuario: idUsu})
+    Solicitud.find({ usuario: idUsu })
         .populate('usuario')
+        .populate('direccion')
         .exec((err, solicitudDB) => {
             if (err) {
                 return res.status(500).json({
@@ -64,6 +65,7 @@ app.get("/solicitud/id/:id", (req, res) => {
     let id = req.params.id;
     Solicitud.findById(id)
         .populate('usuario')
+        .populate('direccion')
         .exec((err, solicitudDB) => {
             if (err) {
                 return res.status(500).json({
@@ -153,13 +155,13 @@ app.put('/solicitud/:id', function(req, res) {
 
             let mensaje = "Su solicitud fue ";
 
-            if (solicitud.estado === 'Aprobado'){
+            if (solicitud.estado === 'Aprobado') {
                 mensaje = mensaje + solicitud.estado;
-            }else{
+            } else {
                 mensaje = mensaje + solicitud.estado + " por " + solicitud.comentario;
             }
 
-            fcm.userNotification(usuarioDB.fcm, `Respuesta a Solicitud`, mensaje, { id: solicitudDB._id+"", comentario: mensaje, estado: solicitud.estado});
+            fcm.userNotification(usuarioDB.fcm, `Respuesta a Solicitud`, mensaje, { id: solicitudDB._id + "", comentario: mensaje, estado: solicitud.estado });
 
             res.json({
                 ok: true,

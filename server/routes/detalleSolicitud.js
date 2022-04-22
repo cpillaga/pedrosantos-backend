@@ -17,10 +17,15 @@ app.get("/detalleSolicitud/:id", (req, res) => {
         .populate({
             path: 'producto',
             populate: {
-                path: 'categoria'
+                path: 'subcategoria'
             }
         })
-        .populate('solicitud')
+        .populate({
+            path: 'solicitud',
+            populate: {
+                path: 'direccion'
+            }
+        })
         .exec((err, detalleSolicitud) => {
             if (err) {
                 return res.status(500).json({

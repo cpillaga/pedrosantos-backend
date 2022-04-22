@@ -36,6 +36,7 @@ app.get("/solicitud/usuario/:idUsu", (req, res) => {
     Solicitud.find({usuario: idUsu})
         .populate('usuario')
         .populate('direccion')
+        .sort({fecha: -1})
         .exec((err, solicitudDB) => {
             if (err) {
                 return res.status(500).json({

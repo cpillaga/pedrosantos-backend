@@ -32,7 +32,8 @@ exports.userBroadcastNotification = function(title, body, data, topico) {
     var payload = {
         notification: {
             title,
-            body
+            body,
+            click_action: 'FLUTTER_NOTIFICATION_CLICK'
         },
         data: data
     };

@@ -29,6 +29,7 @@ exports.userNotification = function(tokensList, title, body, data) {
 exports.userBroadcastNotification = function(title, body, data, topico) {
     console.log("Title: " + title);
     console.log(body);
+    data.click_action = 'FLUTTER_NOTIFICATION_CLICK';
     var payload = {
         notification: {
             title,

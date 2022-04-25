@@ -130,7 +130,7 @@ app.put("/productos-promotions/:topic", (req, res) => {
 
     let mensaje = body.mensaje;
 
-    fcm.userBroadcastNotification(body.title, mensaje, {}, topic);
+    fcm.userBroadcastNotification(body.title, mensaje, {title:body.title,body:body.mensaje}, topic);
 
     res.status(201).json({
         ok: true,
